@@ -2,9 +2,9 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { ArrowUpRight, Play } from "lucide-react";
+import { ArrowUpRight, Play, ExternalLink } from "lucide-react";
 import { motion } from "framer-motion";
-import { REELS_PROJECTS, YOUTUBE_PROJECTS } from "@/data/projects";
+import { REELS_PROJECTS, YOUTUBE_PROJECTS, CONTACT_DATA } from "@/data/projects";
 import { ReelProject, YouTubeProject } from "@/types/project";
 import { VideoModal } from "@/components/portfolio/VideoModal";
 
@@ -62,9 +62,21 @@ export const SelectedWork: React.FC = () => {
             {/* Subheading stretching across with thin grey divider extending to the right */}
             <div className="flex items-center gap-3 mb-4 sm:mb-6 pb-2.5 sm:pb-3 border-b border-[#DAD9D4]/80 w-full">
               <div className="w-[3px] h-4 bg-[#941D27]" />
-              <h3 className="text-xs sm:text-[13px] font-extrabold tracking-[0.2em] uppercase text-[#111111] font-heading shrink-0">
-                SHORT-FORM / INSTAGRAM REELS
-              </h3>
+              <div className="flex items-center gap-2">
+                <h3 className="text-xs sm:text-[13px] font-extrabold tracking-[0.2em] uppercase text-[#111111] font-heading shrink-0">
+                  SHORT-FORM / INSTAGRAM REELS
+                </h3>
+                <a
+                  href={CONTACT_DATA.socials.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Visit Instagram Profile (opens in new tab)"
+                  title="Visit Instagram Profile"
+                  className="text-[#777777] hover:text-[#941D27] transition-all duration-200 hover:scale-115 p-0.5 rounded-sm"
+                >
+                  <ExternalLink className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.2]" />
+                </a>
+              </div>
             </div>
 
             {/* Reels Grid:
@@ -252,9 +264,21 @@ export const SelectedWork: React.FC = () => {
             {/* Subheading stretching across with thin grey divider extending to the right */}
             <div className="flex items-center gap-3 mb-4 sm:mb-6 pb-2.5 sm:pb-3 border-b border-[#DAD9D4]/80 w-full">
               <div className="w-[3px] h-4 bg-[#941D27]" />
-              <h3 className="text-xs sm:text-[13px] font-extrabold tracking-[0.2em] uppercase text-[#111111] font-heading shrink-0">
-                YOUTUBE VIDEOS
-              </h3>
+              <div className="flex items-center gap-2">
+                <h3 className="text-xs sm:text-[13px] font-extrabold tracking-[0.2em] uppercase text-[#111111] font-heading shrink-0">
+                  LONG-FORM / YOUTUBE FILMS
+                </h3>
+                <a
+                  href={CONTACT_DATA.socials.youtube}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Visit YouTube Channel (opens in new tab)"
+                  title="Visit YouTube Channel"
+                  className="text-[#777777] hover:text-[#941D27] transition-all duration-200 hover:scale-115 p-0.5 rounded-sm"
+                >
+                  <ExternalLink className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.2]" />
+                </a>
+              </div>
             </div>
 
             {/* 4 Responsive YouTube Video Cards:
