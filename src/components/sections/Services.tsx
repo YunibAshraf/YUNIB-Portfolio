@@ -109,8 +109,8 @@ export const Services: React.FC = () => {
 
         </div>
 
-        {/* Four Large Cinematic Service Cards Arranged Horizontally with Section-Specific Hover Styles */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 w-full">
+        {/* Four Large Cinematic Service Cards Arranged in 2 Columns on Mobile, 4 Columns on Desktop */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 w-full">
           {SERVICES.map((service, index) => {
             const isVideoEditing = service.id === "video-editing";
             const isShortForm = service.id === "short-form";
@@ -124,7 +124,7 @@ export const Services: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.55, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                className="group relative h-[360px] sm:h-[370px] lg:h-[380px] rounded-2xl overflow-hidden bg-[#141414] shadow-md hover:shadow-2xl transition-all duration-400 hover:-translate-y-2 border border-transparent hover:border-[#941D27]/40 cursor-pointer flex flex-col justify-end p-6"
+                className="group relative h-[280px] xs:h-[300px] sm:h-[340px] lg:h-[380px] rounded-xl sm:rounded-2xl overflow-hidden bg-[#141414] shadow-md hover:shadow-2xl transition-all duration-400 hover:-translate-y-2 border border-transparent hover:border-[#941D27]/40 cursor-pointer flex flex-col justify-end p-3.5 xs:p-4 sm:p-5 lg:p-6 min-w-0"
               >
                 {/* Background Image with Unique Shift / Zoom Behavior */}
                 <div
@@ -150,36 +150,36 @@ export const Services: React.FC = () => {
                 />
 
                 {/* Foreground Content */}
-                <div className="relative z-10 flex flex-col items-start transition-transform duration-300 group-hover:-translate-y-1">
+                <div className="relative z-10 flex flex-col items-start transition-transform duration-300 group-hover:-translate-y-1 w-full">
                   
                   {/* Section-Specific Animated Icon Container */}
-                  <div className="w-11 h-11 rounded-xl bg-[#941D27] flex items-center justify-center shadow-lg mb-4 transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_0_16px_rgba(148,29,39,0.5)]">
+                  <div className="w-8 h-8 xs:w-9 xs:h-9 sm:w-11 sm:h-11 rounded-lg sm:rounded-xl bg-[#941D27] flex items-center justify-center shadow-lg mb-2.5 sm:mb-4 transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_0_16px_rgba(148,29,39,0.5)] shrink-0">
                     {isVideoEditing && (
-                      <Film className="w-5 h-5 text-white stroke-[2] transition-transform duration-400 group-hover:rotate-6" />
+                      <Film className="w-4 h-4 sm:w-5 sm:h-5 text-white stroke-[2] transition-transform duration-400 group-hover:rotate-6" />
                     )}
                     {isShortForm && (
-                      <Smartphone className="w-5 h-5 text-white stroke-[2] transition-transform duration-400 group-hover:-translate-y-1" />
+                      <Smartphone className="w-4 h-4 sm:w-5 sm:h-5 text-white stroke-[2] transition-transform duration-400 group-hover:-translate-y-1" />
                     )}
                     {isColorGrading && (
-                      <Palette className="w-5 h-5 text-white stroke-[2] transition-transform duration-500 group-hover:rotate-45" />
+                      <Palette className="w-4 h-4 sm:w-5 sm:h-5 text-white stroke-[2] transition-transform duration-500 group-hover:rotate-45" />
                     )}
                     {isVoiceOver && (
-                      <Mic className="w-5 h-5 text-white stroke-[2] transition-transform duration-300 group-hover:scale-115" />
+                      <Mic className="w-4 h-4 sm:w-5 sm:h-5 text-white stroke-[2] transition-transform duration-300 group-hover:scale-115" />
                     )}
                   </div>
 
                   {/* Bold White Service Title */}
-                  <h3 className="text-xl sm:text-2xl font-bold text-white font-heading tracking-tight mb-2 group-hover:text-white">
+                  <h3 className="text-sm xs:text-base sm:text-xl lg:text-2xl font-bold text-white font-heading tracking-tight mb-1 sm:mb-2 group-hover:text-white leading-tight">
                     {service.title}
                   </h3>
 
                   {/* Exact Description with smooth upward slide */}
-                  <p className="text-xs sm:text-[13px] text-white/75 font-normal leading-relaxed mb-4 transition-colors duration-300 group-hover:text-white/90">
+                  <p className="text-[11px] xs:text-xs sm:text-[13px] text-white/75 font-normal leading-relaxed mb-2 sm:mb-4 transition-colors duration-300 group-hover:text-white/90 line-clamp-3 sm:line-clamp-none">
                     {service.description}
                   </p>
 
                   {/* Short Maroon Accent Line that Expands on Hover */}
-                  <div className="h-[2.5px] w-9 bg-[#941D27] rounded-full transition-all duration-400 ease-out group-hover:w-16 group-hover:bg-[#ff3b47]" />
+                  <div className="h-[2px] sm:h-[2.5px] w-6 sm:w-9 bg-[#941D27] rounded-full transition-all duration-400 ease-out group-hover:w-12 sm:group-hover:w-16 group-hover:bg-[#ff3b47]" />
 
                 </div>
               </motion.div>

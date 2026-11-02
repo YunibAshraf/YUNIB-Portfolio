@@ -37,7 +37,17 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTalkModal }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const [hoveredTab, setHoveredTab] = useState<string | null>(null);
 
-  // Scroll detection for navbar surface elevation transition
+  // Prevent background scrolling when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 25);
@@ -237,16 +247,16 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTalkModal }) => {
               handleNavClick(e, "#contact");
               if (onOpenTalkModal) onOpenTalkModal();
             }}
-            className="inline-flex items-center justify-center bg-[#111111] text-white text-[11px] font-semibold px-3 py-1.5 rounded-full hover:bg-black transition-all"
+            className="inline-flex items-center justify-center bg-[#111111] text-white text-xs font-semibold px-3.5 py-2 min-h-[40px] rounded-full hover:bg-black transition-all active:scale-95"
           >
             <span>Let&apos;s Talk</span>
-            <ArrowUpRight className="ml-0.5 w-3 h-3" />
+            <ArrowUpRight className="ml-1 w-3.5 h-3.5" />
           </a>
 
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle Navigation Menu"
-            className="p-1.5 text-[#111111] hover:text-[#941D27] transition-colors rounded-full hover:bg-black/5"
+            className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center text-[#111111] hover:text-[#941D27] transition-colors rounded-full hover:bg-black/5 active:scale-95 cursor-pointer"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -256,66 +266,82 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTalkModal }) => {
       {/* Mobile Drawer Dropdown Menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -10, scale: 0.98 }}
-            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="md:hidden mt-2 max-w-7xl mx-auto pointer-events-auto rounded-2xl bg-white/95 backdrop-blur-md border border-[#DAD9D4] px-5 py-5 shadow-xl"
-          >
-            <nav className="flex flex-col gap-3 text-sm font-medium">
-              {navItems.map((item) => {
-                const isActive = activeSection === item.id;
-                return (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    onClick={(e) => handleNavClick(e, item.href)}
-                    className={`flex items-center justify-between py-2 px-3 rounded-lg transition-colors ${
-                      isActive
-                        ? "text-[#941D27] font-semibold bg-[#941D27]/5"
-                        : "text-[#111111] hover:bg-black/5"
-                    }`}
-                  >
-                    <span>{item.name}</span>
-                    {isActive && (
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#941D27]" />
-                    )}
-                  </a>
-                );
-              })}
-            </nav>
+          <>
+            {/* Backdrop for closing when tapping outside */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setMobileMenuOpen(false)}
+              className="md:hidden fixed inset-0 bg-black/40 backdrop-blur-xs z-40 pointer-events-auto"
+            />
 
-            <div className="mt-4 pt-4 border-t border-[#DAD9D4] flex items-center justify-between">
-              <span className="text-xs text-[#777777] font-medium">Socials</span>
-              <div className="flex items-center gap-2">
-                <a
-                  href={CONTACT_DATA.socials.youtube}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-full border border-[#DAD9D4] flex items-center justify-center text-[#111111] hover:text-[#FF0000] transition-colors"
-                >
-                  <HeaderYoutubeIcon />
-                </a>
-                <a
-                  href={CONTACT_DATA.socials.instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-full border border-[#DAD9D4] flex items-center justify-center text-[#111111] hover:text-[#C13584] transition-colors"
-                >
-                  <HeaderInstagramIcon />
-                </a>
-                <a
-                  href={CONTACT_DATA.socials.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-full border border-[#DAD9D4] flex items-center justify-center text-[#111111] hover:text-[#0A66C2] transition-colors"
-                >
-                  <HeaderLinkedinIcon />
-                </a>
+            <motion.div
+              initial={{ opacity: 0, y: -10, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -10, scale: 0.98 }}
+              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+              className="md:hidden relative z-50 mt-2 max-w-7xl mx-auto pointer-events-auto rounded-2xl bg-white/98 backdrop-blur-md border border-[#DAD9D4] p-5 shadow-2xl"
+            >
+              <nav className="flex flex-col gap-1.5 text-base font-medium">
+                {navItems.map((item) => {
+                  const isActive = activeSection === item.id;
+                  return (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      onClick={(e) => handleNavClick(e, item.href)}
+                      className={`flex items-center justify-between py-3 px-4 rounded-xl min-h-[46px] transition-colors ${
+                        isActive
+                          ? "text-[#941D27] font-semibold bg-[#941D27]/8"
+                          : "text-[#111111] hover:bg-black/5 active:bg-black/5"
+                      }`}
+                    >
+                      <span className="font-heading">{item.name}</span>
+                      {isActive ? (
+                        <span className="w-2 h-2 rounded-full bg-[#941D27]" />
+                      ) : (
+                        <ArrowUpRight className="w-4 h-4 text-[#777777] opacity-60" />
+                      )}
+                    </a>
+                  );
+                })}
+              </nav>
+
+              <div className="mt-4 pt-4 border-t border-[#DAD9D4] flex items-center justify-between">
+                <span className="text-xs text-[#777777] font-semibold tracking-wider uppercase font-heading">Connect</span>
+                <div className="flex items-center gap-2">
+                  <a
+                    href={CONTACT_DATA.socials.youtube}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="YouTube"
+                    className="w-10 h-10 rounded-full border border-[#DAD9D4] flex items-center justify-center text-[#111111] hover:text-[#FF0000] active:scale-95 transition-colors"
+                  >
+                    <HeaderYoutubeIcon />
+                  </a>
+                  <a
+                    href={CONTACT_DATA.socials.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                    className="w-10 h-10 rounded-full border border-[#DAD9D4] flex items-center justify-center text-[#111111] hover:text-[#C13584] active:scale-95 transition-colors"
+                  >
+                    <HeaderInstagramIcon />
+                  </a>
+                  <a
+                    href={CONTACT_DATA.socials.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn"
+                    className="w-10 h-10 rounded-full border border-[#DAD9D4] flex items-center justify-center text-[#111111] hover:text-[#0A66C2] active:scale-95 transition-colors"
+                  >
+                    <HeaderLinkedinIcon />
+                  </a>
+                </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </div>

@@ -181,7 +181,7 @@ export const VideoModal: React.FC<VideoModalProps> = ({
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 md:p-8">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-5 md:p-8">
           {/* Backdrop with soft dark blur */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -198,15 +198,15 @@ export const VideoModal: React.FC<VideoModalProps> = ({
             exit={{ opacity: 0, scale: 0.95, y: 12 }}
             transition={{ type: "spring", damping: 26, stiffness: 320 }}
             ref={containerRef}
-            className={`relative z-10 flex flex-col rounded-[20px] bg-[#181818] border border-[#2A2A2A] shadow-[0_25px_60px_rgba(0,0,0,0.6)] overflow-hidden transition-all duration-300 ${
+            className={`relative z-10 flex flex-col rounded-2xl sm:rounded-[20px] bg-[#181818] border border-[#2A2A2A] shadow-[0_25px_60px_rgba(0,0,0,0.6)] overflow-hidden transition-all duration-300 w-full ${
               isVertical
-                ? "w-full max-w-[380px] sm:max-w-[410px] max-h-[92vh]"
-                : "w-full max-w-[920px] xl:max-w-[1000px] max-h-[92vh]"
+                ? "max-w-[340px] xs:max-w-[380px] sm:max-w-[410px] max-h-[92dvh]"
+                : "max-w-[920px] xl:max-w-[1000px] max-h-[92dvh]"
             }`}
           >
             {/* Common Header: Title on the left, Close button on the right */}
-            <div className="flex items-center justify-between px-4 sm:px-5 py-3 border-b border-[#262626] bg-[#141414] shrink-0">
-              <div className="flex items-center gap-2.5 truncate pr-3">
+            <div className="flex items-center justify-between px-3.5 sm:px-5 py-2.5 sm:py-3 border-b border-[#262626] bg-[#141414] shrink-0">
+              <div className="flex items-center gap-2 truncate pr-2">
                 <span className="w-2 h-2 rounded-full bg-[#941D27] shrink-0" />
                 <span className="text-xs sm:text-sm font-semibold text-[#EEEEEE] font-heading tracking-wide truncate">
                   {title}
@@ -215,7 +215,7 @@ export const VideoModal: React.FC<VideoModalProps> = ({
               <button
                 onClick={onClose}
                 aria-label="Close modal"
-                className="w-8 h-8 rounded-full bg-white/5 hover:bg-[#941D27] text-white/70 hover:text-white transition-colors duration-200 flex items-center justify-center shrink-0 cursor-pointer"
+                className="w-8 h-8 rounded-full bg-white/5 hover:bg-[#941D27] text-white/70 hover:text-white transition-colors duration-200 flex items-center justify-center shrink-0 cursor-pointer min-w-[32px] min-h-[32px]"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -225,7 +225,7 @@ export const VideoModal: React.FC<VideoModalProps> = ({
             <div
               className={`relative w-full bg-[#0D0D0D] flex items-center justify-center overflow-hidden ${
                 isVertical
-                  ? "aspect-[9/16] max-h-[70vh] sm:max-h-[74vh]"
+                  ? "aspect-[9/16] max-h-[65dvh] sm:max-h-[74vh]"
                   : "aspect-video"
               }`}
             >

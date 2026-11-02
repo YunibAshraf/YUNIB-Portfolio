@@ -69,8 +69,8 @@ export const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="w-full bg-[#F5F4F0] pt-12 pb-14 sm:pb-20 select-none overflow-hidden">
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12">
+    <footer className="w-full bg-[#F5F4F0] pt-10 sm:pt-12 pb-12 sm:pb-20 select-none overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12">
         
         {/* 1. Socials Section */}
         <div className="mb-6 sm:mb-8">
@@ -78,7 +78,7 @@ export const Footer: React.FC = () => {
             SOCIALS
           </span>
 
-          <div className="flex items-center gap-3 sm:gap-3.5">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-3.5">
             {socials.map((social) => (
               <a
                 key={social.name}
@@ -95,24 +95,23 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* 2. Divider */}
-        <div className="w-full h-[1px] bg-[#DAD9D4] my-6 sm:my-7" />
+        <div className="w-full h-[1px] bg-[#DAD9D4] my-5 sm:my-7" />
 
         {/* 3. Copyright and Design Credit */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between text-xs sm:text-[13px] text-[#777777] gap-2 mb-10 sm:mb-16 font-normal">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between text-xs sm:text-[13px] text-[#777777] gap-2 mb-8 sm:mb-16 font-normal">
           <p>© 2026 Yunib Ashraf. All rights reserved.</p>
-       
         </div>
 
         {/* 4. Oversized Personal Branding with Smooth Masked Text Animation */}
-        <div className="text-center pt-2 sm:pt-4 overflow-hidden">
+        <div className="text-center pt-2 sm:pt-4 overflow-hidden w-full">
           <motion.h1
             initial={{ opacity: 0, y: 35 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-            className="font-extrabold uppercase text-[#D0CFCC] tracking-tight leading-none pointer-events-none transition-colors duration-400 hover:text-[#941D27]/30"
+            className="font-extrabold uppercase text-[#D0CFCC] tracking-tight leading-none pointer-events-none transition-colors duration-400 hover:text-[#941D27]/30 break-words"
             style={{
-              fontSize: "clamp(2.75rem, 11.5vw, 10.5rem)",
+              fontSize: "clamp(2rem, 11vw, 10.5rem)",
               letterSpacing: "-0.035em",
             }}
           >
@@ -124,7 +123,7 @@ export const Footer: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.65, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-3 sm:mt-5 text-[10px] sm:text-xs md:text-sm font-semibold uppercase tracking-[0.22em] sm:tracking-[0.28em] text-[#777777] font-heading"
+            className="mt-2.5 sm:mt-5 text-[9px] xs:text-[10px] sm:text-xs md:text-sm font-semibold uppercase tracking-[0.18em] sm:tracking-[0.28em] text-[#777777] font-heading"
           >
             VIDEO EDITOR · VISUAL STORYTELLER
           </motion.p>

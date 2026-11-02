@@ -93,61 +93,67 @@ export const Hero: React.FC = () => {
 
   return (
     <>
-      <section className="pt-6 sm:pt-10 md:pt-14 pb-16 md:pb-24 max-w-7xl mx-auto px-5 sm:px-8 md:px-12 overflow-hidden">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 xl:gap-16 items-center">
+      <section className="pt-4 sm:pt-10 md:pt-14 pb-12 sm:pb-16 md:pb-24 max-w-7xl mx-auto px-4 sm:px-8 md:px-12 overflow-hidden">
+        {/* On mobile (<768px): flex flex-col with responsive ordering
+            On tablet/desktop (md: 768px+): grid grid-cols-1 lg:grid-cols-12 */}
+        <div className="flex flex-col md:grid md:grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 xl:gap-16 items-center">
           
-          {/* Left Column (48–52% Desktop Width) */}
-          <div className="lg:col-span-6 flex flex-col justify-center">
+          {/* Left Content Column on Desktop: contents on mobile so children participate directly in flex ordering */}
+          <div className="contents md:flex md:flex-col lg:col-span-6 justify-center min-w-0">
             
-            {/* Eyebrow Label with Maroon Accent Line */}
-            <motion.div
-              initial={{ opacity: 0, x: -15 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="flex items-center gap-3 mb-5 sm:mb-6"
-            >
-              <span className="text-[11px] sm:text-xs font-bold tracking-[0.2em] uppercase text-[#171717] font-heading">
-                VIDEO EDITOR &amp; VISUAL STORYTELLER
-              </span>
-              <div className="h-[2px] w-8 bg-[#941D27]" />
-            </motion.div>
+            {/* 1. Header (Eyebrow, Main Headline, Description) -> Mobile Order 1 */}
+            <div className="order-1 flex flex-col justify-center min-w-0 w-full">
+              {/* Eyebrow Label with Maroon Accent Line */}
+              <motion.div
+                initial={{ opacity: 0, x: -15 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                className="flex items-center gap-2.5 sm:gap-3 mb-4 sm:mb-6"
+              >
+                <span className="text-[10px] sm:text-xs font-bold tracking-[0.18em] sm:tracking-[0.2em] uppercase text-[#171717] font-heading">
+                  VIDEO EDITOR &amp; VISUAL STORYTELLER
+                </span>
+                <div className="h-[2px] w-6 sm:w-8 bg-[#941D27] shrink-0" />
+              </motion.div>
 
-            {/* Main Headline */}
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="text-4xl sm:text-5xl md:text-[54px] xl:text-[60px] font-black uppercase tracking-tight text-[#171717] font-heading leading-[1.08] mb-5 sm:mb-6"
-            >
-              I TURN IDEAS INTO<br />
-              VISUAL{" "}
-              <span className="relative inline-block text-[#941D27]">
-                STORIES.
-                <CurvedUnderline />
-              </span>
-            </motion.h1>
+              {/* Main Headline */}
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+                className="text-[32px] xs:text-[36px] sm:text-5xl md:text-[54px] xl:text-[60px] font-black uppercase tracking-tight text-[#171717] font-heading leading-[1.08] mb-4 sm:mb-6 break-words"
+              >
+                I TURN IDEAS INTO<br />
+                VISUAL{" "}
+                <span className="relative inline-block text-[#941D27]">
+                  STORIES.
+                  <CurvedUnderline />
+                </span>
+              </motion.h1>
 
-            {/* Description */}
-            <motion.p
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-              className="text-[#777777] text-sm sm:text-base max-w-lg leading-relaxed mb-7 sm:mb-8 font-normal font-sans"
-            >
-              A video editor passionate about storytelling, visual rhythm and creating engaging content that connects with audiences.
-            </motion.p>
+              {/* Description */}
+              <motion.p
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                className="text-[#777777] text-sm sm:text-base max-w-lg leading-relaxed mb-6 sm:mb-8 font-normal font-sans"
+              >
+                A video editor passionate about storytelling, visual rhythm and creating engaging content that connects with audiences.
+              </motion.p>
+            </div>
 
-            {/* Two Action CTA Buttons */}
+            {/* 6. CTA Buttons -> Mobile Order 4 (placed at the very bottom of Hero on mobile)
+                On Desktop (md: 768px+): stays in original position above software icons */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              className="flex flex-wrap items-center gap-3.5 mb-8 sm:mb-9"
+              className="order-4 flex flex-col xs:flex-row items-stretch xs:items-center justify-center md:justify-start gap-3 sm:gap-3.5 mt-8 md:mt-0 mb-2 md:mb-9 w-full md:w-auto"
             >
               {/* 1. Watch Showreel (Maroon Pill) */}
               <button
                 onClick={() => setIsVideoModalOpen(true)}
-                className="group inline-flex items-center justify-center bg-[#941D27] text-white text-xs sm:text-sm font-semibold px-6 py-3 rounded-full hover:bg-[#7D161F] transition-all duration-300 active:scale-95 shadow-[0_4px_14px_rgba(148,29,39,0.25)] hover:shadow-[0_6px_20px_rgba(148,29,39,0.35)] cursor-pointer"
+                className="group inline-flex items-center justify-center bg-[#941D27] text-white text-xs sm:text-sm font-semibold px-6 py-3.5 sm:py-3 min-h-[44px] rounded-full hover:bg-[#7D161F] transition-all duration-300 active:scale-95 shadow-[0_4px_14px_rgba(148,29,39,0.25)] hover:shadow-[0_6px_20px_rgba(148,29,39,0.35)] cursor-pointer"
               >
                 <Play className="w-3.5 h-3.5 fill-current mr-2 transition-transform duration-300 group-hover:scale-115" />
                 <span>Watch Showreel</span>
@@ -156,101 +162,105 @@ export const Hero: React.FC = () => {
               {/* 2. Explore Work (White Pill with Black Border) */}
               <a
                 href="#work"
-                className="group inline-flex items-center justify-center bg-white text-[#171717] border border-[#171717] text-xs sm:text-sm font-semibold px-6 py-3 rounded-full transition-all duration-300 active:scale-95 hover:bg-[#171717]/5 cursor-pointer shadow-xs"
+                className="group inline-flex items-center justify-center bg-white text-[#171717] border border-[#171717] text-xs sm:text-sm font-semibold px-6 py-3.5 sm:py-3 min-h-[44px] rounded-full transition-all duration-300 active:scale-95 hover:bg-[#171717]/5 cursor-pointer shadow-xs"
               >
                 <span>Explore Work</span>
                 <ArrowUpRight className="ml-1.5 w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
             </motion.div>
 
-            {/* Exactly Three Video Editing Software Icons */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
-              className="flex items-center gap-4 sm:gap-5 mb-8 sm:mb-9"
-            >
-              <div className="flex items-center gap-4 sm:gap-5">
-                {/* 1. Adobe Premiere Pro */}
-                <div className="flex items-center justify-center transition-transform duration-200 hover:scale-108" title="Adobe Premiere Pro">
-                  <PremiereIcon />
-                </div>
+            {/* 4 & 5. Existing Software Icons and Statistics -> Mobile Order 3 (after Introduction Video Card) */}
+            <div className="order-3 flex flex-col w-full min-w-0">
+              {/* Exactly Three Video Editing Software Icons */}
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                className="flex items-center justify-center md:justify-start gap-4 sm:gap-5 mb-7 sm:mb-9 w-full"
+              >
+                <div className="flex items-center justify-center md:justify-start gap-3.5 sm:gap-5">
+                  {/* 1. Adobe Premiere Pro */}
+                  <div className="flex items-center justify-center transition-transform duration-200 hover:scale-108 shrink-0" title="Adobe Premiere Pro">
+                    <PremiereIcon />
+                  </div>
 
-                <div className="h-6 w-[1px] bg-[#DAD9D4]" />
+                  <div className="h-6 w-[1px] bg-[#DAD9D4]" />
 
-                {/* 2. DaVinci Resolve */}
-                <div className="flex items-center justify-center transition-transform duration-200 hover:scale-108" title="DaVinci Resolve">
-                  <ResolveIcon />
-                </div>
+                  {/* 2. DaVinci Resolve */}
+                  <div className="flex items-center justify-center transition-transform duration-200 hover:scale-108 shrink-0" title="DaVinci Resolve">
+                    <ResolveIcon />
+                  </div>
 
-                <div className="h-6 w-[1px] bg-[#DAD9D4]" />
+                  <div className="h-6 w-[1px] bg-[#DAD9D4]" />
 
-                {/* 3. Final Cut Pro */}
-                <div className="flex items-center justify-center transition-transform duration-200 hover:scale-108" title="Final Cut Pro">
-                  <FinalCutIcon />
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Light-Pink/Off-White Statistics Panel */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
-              className="w-full max-w-lg rounded-2xl bg-[#F6EFEF]/80 border border-[#EADBDB] p-4 sm:p-5 shadow-[0_4px_16px_rgba(148,29,39,0.04)]"
-            >
-              <div className="grid grid-cols-3 divide-x divide-[#E5D7D7]">
-                {/* 50+ Projects Edited */}
-                <div className="flex items-center gap-2.5 sm:gap-3 px-2 sm:px-3 first:pl-1">
-                  <Film className="w-5 h-5 sm:w-6 sm:h-6 text-[#941D27] shrink-0 stroke-[1.75]" />
-                  <div className="flex flex-col">
-                    <span className="text-lg sm:text-xl font-black text-[#171717] font-heading leading-tight">
-                      50+
-                    </span>
-                    <span className="text-[10px] sm:text-[11px] text-[#777777] font-medium leading-tight mt-0.5">
-                      Projects Edited
-                    </span>
+                  {/* 3. Final Cut Pro */}
+                  <div className="flex items-center justify-center transition-transform duration-200 hover:scale-108 shrink-0" title="Final Cut Pro">
+                    <FinalCutIcon />
                   </div>
                 </div>
+              </motion.div>
 
-                {/* 2+ Years Experience */}
-                <div className="flex items-center gap-2.5 sm:gap-3 px-2 sm:px-3">
-                  <Calendar className="w-5 h-5 sm:w-6 sm:h-6 text-[#941D27] shrink-0 stroke-[1.75]" />
-                  <div className="flex flex-col">
-                    <span className="text-lg sm:text-xl font-black text-[#171717] font-heading leading-tight">
-                      2+
-                    </span>
-                    <span className="text-[10px] sm:text-[11px] text-[#777777] font-medium leading-tight mt-0.5">
-                      Years Experience
-                    </span>
+              {/* Light-Pink/Off-White Statistics Panel */}
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                className="w-full max-w-lg rounded-2xl bg-[#F6EFEF]/80 border border-[#EADBDB] p-3.5 sm:p-5 shadow-[0_4px_16px_rgba(148,29,39,0.04)]"
+              >
+                <div className="grid grid-cols-3 divide-x divide-[#E5D7D7]">
+                  {/* 50+ Projects Edited */}
+                  <div className="flex flex-col sm:flex-row items-center sm:items-center text-center sm:text-left gap-1.5 sm:gap-3 px-1 sm:px-3 first:pl-0 sm:first:pl-1">
+                    <Film className="w-4 h-4 sm:w-6 sm:h-6 text-[#941D27] shrink-0 stroke-[1.75]" />
+                    <div className="flex flex-col min-w-0">
+                      <span className="text-base sm:text-xl font-black text-[#171717] font-heading leading-tight">
+                        50+
+                      </span>
+                      <span className="text-[9px] sm:text-[11px] text-[#777777] font-medium leading-tight mt-0.5">
+                        Projects Edited
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* 2+ Years Experience */}
+                  <div className="flex flex-col sm:flex-row items-center sm:items-center text-center sm:text-left gap-1.5 sm:gap-3 px-1 sm:px-3">
+                    <Calendar className="w-4 h-4 sm:w-6 sm:h-6 text-[#941D27] shrink-0 stroke-[1.75]" />
+                    <div className="flex flex-col min-w-0">
+                      <span className="text-base sm:text-xl font-black text-[#171717] font-heading leading-tight">
+                        2+
+                      </span>
+                      <span className="text-[9px] sm:text-[11px] text-[#777777] font-medium leading-tight mt-0.5">
+                        Years Experience
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* 100% Client Focused */}
+                  <div className="flex flex-col sm:flex-row items-center sm:items-center text-center sm:text-left gap-1.5 sm:gap-3 px-1 sm:px-3">
+                    <Target className="w-4 h-4 sm:w-6 sm:h-6 text-[#941D27] shrink-0 stroke-[1.75]" />
+                    <div className="flex flex-col min-w-0">
+                      <span className="text-base sm:text-xl font-black text-[#171717] font-heading leading-tight">
+                        100%
+                      </span>
+                      <span className="text-[9px] sm:text-[11px] text-[#777777] font-medium leading-tight mt-0.5">
+                        Client Focused
+                      </span>
+                    </div>
                   </div>
                 </div>
-
-                {/* 100% Client Focused */}
-                <div className="flex items-center gap-2.5 sm:gap-3 px-2 sm:px-3">
-                  <Target className="w-5 h-5 sm:w-6 sm:h-6 text-[#941D27] shrink-0 stroke-[1.75]" />
-                  <div className="flex flex-col">
-                    <span className="text-lg sm:text-xl font-black text-[#171717] font-heading leading-tight">
-                      100%
-                    </span>
-                    <span className="text-[10px] sm:text-[11px] text-[#777777] font-medium leading-tight mt-0.5">
-                      Client Focused
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </div>
 
           </div>
 
-          {/* Right Column - Premium Introduction Video Card (48–52% Desktop Width) */}
+          {/* 2. Introduction Video Card -> Mobile Order 2 (between Heading/Description & CTA Buttons)
+              On Desktop (md: and above): sits naturally in the right column */}
           <motion.div
             initial={{ opacity: 0, scale: 0.97 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:col-span-6 flex flex-col items-center lg:items-end justify-center w-full"
+            className="order-2 lg:col-span-6 flex flex-col items-center lg:items-end justify-center w-full min-w-0 mb-7 md:mb-0"
           >
-            <div className="w-full max-w-[560px] rounded-[22px] bg-white p-3.5 sm:p-4 border border-[#941D27]/40 shadow-[0_12px_32px_rgba(148,29,39,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(148,29,39,0.12)] hover:border-[#941D27]/70 group">
+            <div className="w-full max-w-[560px] rounded-2xl sm:rounded-[22px] bg-white p-3 sm:p-4 border border-[#941D27]/40 shadow-[0_12px_32px_rgba(148,29,39,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(148,29,39,0.12)] hover:border-[#941D27]/70 group">
               {/* Top Card Bar / Header */}
               <div className="flex items-center justify-between px-2 pt-1 pb-3">
                 <div className="flex items-center gap-2">

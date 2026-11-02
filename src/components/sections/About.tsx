@@ -58,35 +58,34 @@ export const About: React.FC = () => {
   return (
     <section
       id="about"
-      className="w-full border-t border-[#DAD9D4]/60 py-12 sm:py-16 lg:py-20 scroll-mt-28 overflow-hidden"
+      className="w-full border-t border-[#DAD9D4]/60 py-10 sm:py-16 lg:py-20 scroll-mt-28 overflow-hidden"
     >
       {/* Main Container: 92% width, max 1500px */}
       <div className="w-[92%] max-w-[1500px] mx-auto">
 
-        {/* Three-Column Desktop Grid Layout:
-            Left (Portrait): minmax(360px, 390px)
-            Center (Text): minmax(0, 1fr)
-            Right (Tools): minmax(250px, 290px)
-            With items-start so all columns start at the top */}
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(360px,390px)_minmax(0,1fr)_minmax(250px,290px)] gap-10 lg:gap-10 xl:gap-12 items-start">
+        {/* Three-Column Desktop Grid Layout / Reordered Mobile Flow */}
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(360px,390px)_minmax(0,1fr)_minmax(250px,290px)] gap-8 sm:gap-10 lg:gap-10 xl:gap-12 items-start">
 
-          {/* 1. Left Column — Layered Editorial Portrait Visual */}
+          {/* 1. Left Column on Desktop (Portrait Card)
+              - On Mobile (<1024px): hidden, because portrait card is placed directly below the headline
+              - On Desktop (lg: 1024px+): displayed in Column 1
+          */}
           <motion.div
             initial={{ opacity: 0, scale: 0.96, y: 15 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="w-full flex justify-center lg:justify-start shrink-0 lg:pt-1"
+            className="hidden lg:flex w-full justify-start shrink-0 lg:pt-1 min-w-0"
           >
             <div
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
-              className="relative w-[320px] sm:w-[350px] lg:w-[380px] h-[470px] sm:h-[500px] lg:h-[530px] flex items-center justify-center cursor-pointer group shrink-0"
+              className="relative w-full max-w-[380px] h-[530px] flex items-center justify-center cursor-pointer group shrink-0"
             >
               {/* Deep Maroon Rounded Background Card (360–390px wide, 500–540px tall, 28–32px radius) */}
               <motion.div
                 style={{ x: boxX, y: boxY }}
-                className="absolute inset-0 rounded-[28px] sm:rounded-[32px] bg-[#941D27] shadow-[0_16px_36px_rgba(148,29,39,0.25)] -z-10 transition-shadow duration-300 group-hover:shadow-[0_24px_50px_rgba(148,29,39,0.38)]"
+                className="absolute inset-0 rounded-[32px] bg-[#941D27] shadow-[0_16px_36px_rgba(148,29,39,0.25)] -z-10 transition-shadow duration-300 group-hover:shadow-[0_24px_50px_rgba(148,29,39,0.38)]"
               />
 
               {/* Tight-cutout Portrait with Hand-drawn White Sketch Outline occupying ~92-95% of card height and overlapping slightly */}
@@ -99,7 +98,7 @@ export const About: React.FC = () => {
                   alt="Yunib Ashraf — Video Editor & Visual Storyteller"
                   fill
                   priority
-                  sizes="(max-width: 640px) 320px, (max-width: 1024px) 350px, 390px"
+                  sizes="390px"
                   className="object-contain object-center drop-shadow-[0_15px_30px_rgba(0,0,0,0.28)] select-none pointer-events-none"
                 />
               </motion.div>
@@ -114,17 +113,17 @@ export const About: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="min-w-0 flex flex-col justify-start"
           >
-            {/* Small Label — exactly aligned with TOOLS I USE */}
-            <div className="flex items-center gap-3 h-5 mb-3">
+            {/* 1. Small Label: ABOUT ME */}
+            <div className="flex items-center gap-3 h-5 mb-2.5 sm:mb-3">
               <div className="h-[2px] w-6 bg-[#941D27]" />
               <span className="text-[11px] sm:text-xs font-bold tracking-[0.24em] uppercase text-[#111111]/85 font-heading">
                 ABOUT ME
               </span>
             </div>
 
-            {/* Main Heading: 40–44px desktop, 2-3 balanced lines, tight tracking */}
+            {/* 2. Main Heading: GOOD EDITING IS INVISIBLE. GREAT EDITING IS UNFORGETTABLE. */}
             <div className="mb-4 sm:mb-5">
-              <h2 className="text-2xl sm:text-3xl lg:text-[38px] xl:text-[42px] font-black uppercase tracking-tight text-[#111111] font-heading leading-[1.05]">
+              <h2 className="text-[22px] xs:text-2xl sm:text-3xl lg:text-[38px] xl:text-[42px] font-black uppercase tracking-tight text-[#111111] font-heading leading-[1.08] sm:leading-[1.05] break-words">
                 GOOD EDITING IS INVISIBLE.<br />
                 GREAT EDITING IS<br />
                 UNFORGETTABLE.
@@ -132,8 +131,38 @@ export const About: React.FC = () => {
               <HandDrawnUnderline />
             </div>
 
-            {/* Exact Five Paragraphs with Refined Editorial Typography (15-16px, 1.65 line-height) */}
-            <div className="space-y-3 mb-6 sm:mb-7 text-[14.5px] sm:text-[15px] lg:text-[15.5px] text-[#555555] leading-[1.65] font-normal">
+            {/* 3. Mobile-only Portrait Image placed immediately below the headline */}
+            <div className="flex lg:hidden w-full justify-center my-6 sm:my-8">
+              <div
+                onMouseMove={handleMouseMove}
+                onMouseLeave={handleMouseLeave}
+                className="relative w-full max-w-[320px] xs:max-w-[340px] sm:max-w-[360px] h-[440px] xs:h-[470px] sm:h-[500px] flex items-center justify-center cursor-pointer group shrink-0"
+              >
+                {/* Deep Maroon Background Card */}
+                <motion.div
+                  style={{ x: boxX, y: boxY }}
+                  className="absolute inset-0 rounded-[28px] sm:rounded-[32px] bg-[#941D27] shadow-[0_16px_36px_rgba(148,29,39,0.25)] -z-10"
+                />
+
+                {/* Tight-cutout Portrait with Hand-drawn White Sketch Outline */}
+                <motion.div
+                  style={{ x: portraitX, y: portraitY }}
+                  className="relative w-[106%] h-[106%] flex items-center justify-center transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                >
+                  <Image
+                    src="/images/about/yunib-portrait-tight.png"
+                    alt="Yunib Ashraf — Video Editor & Visual Storyteller"
+                    fill
+                    priority
+                    sizes="(max-width: 640px) 320px, 360px"
+                    className="object-contain object-center drop-shadow-[0_15px_30px_rgba(0,0,0,0.28)] select-none pointer-events-none"
+                  />
+                </motion.div>
+              </div>
+            </div>
+
+            {/* 4. Exact Five Paragraphs with Refined Editorial Typography (15-16px, 1.65 line-height) */}
+            <div className="space-y-3 mb-6 sm:mb-7 text-[14px] sm:text-[15px] lg:text-[15.5px] text-[#555555] leading-[1.65] font-normal">
               {/* Paragraph 1 — Professional Introduction */}
               <p>
                 I&apos;m a video editor and visual storyteller passionate about turning raw footage into compelling visual experiences. I specialize in creative editing, cinematic color grading, sound design, and voice-over integration, bringing together visuals and audio to create stories that resonate with audiences.
@@ -160,11 +189,11 @@ export const About: React.FC = () => {
               </p>
             </div>
 
-            {/* Rounded Black CTA Button */}
+            {/* 5. Rounded Black CTA Button */}
             <div>
               <a
                 href="#contact"
-                className="group relative inline-flex items-center justify-center bg-[#111111] text-white text-xs sm:text-sm font-semibold px-7 sm:px-8 py-3.5 rounded-full hover:bg-black transition-all duration-300 active:scale-95 shadow-md hover:shadow-xl overflow-hidden cursor-pointer"
+                className="group relative inline-flex items-center justify-center bg-[#111111] text-white text-xs sm:text-sm font-semibold px-7 sm:px-8 py-3.5 min-h-[44px] rounded-full hover:bg-black transition-all duration-300 active:scale-95 shadow-md hover:shadow-xl overflow-hidden cursor-pointer"
               >
                 <span className="relative z-10">Let&apos;s Work Together</span>
                 <ArrowUpRight className="relative z-10 ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5 group-hover:-translate-y-1.5" />
@@ -178,7 +207,7 @@ export const About: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="w-full shrink-0 flex flex-col justify-start pt-6 lg:pt-0 lg:pl-8 xl:pl-9 lg:border-l border-[#DAD9D4] self-start"
+            className="w-full shrink-0 flex flex-col justify-start pt-6 lg:pt-0 lg:pl-8 xl:pl-9 lg:border-l border-[#DAD9D4] self-start min-w-0"
           >
             {/* Tools Heading — exactly matching ABOUT ME label line-height and alignment */}
             <div className="flex items-center h-5 mb-4 sm:mb-5">
@@ -243,7 +272,7 @@ export const About: React.FC = () => {
                   className="flex items-center gap-3 group cursor-default"
                 >
                   <Check className="w-5 h-5 text-[#941D27] stroke-[3.2] shrink-0 transition-transform duration-250 group-hover:scale-120" />
-                  <span className="text-[14.5px] sm:text-[15.5px] font-medium text-[#111111] transition-colors duration-250 group-hover:text-[#941D27] whitespace-nowrap">
+                  <span className="text-[14px] sm:text-[15.5px] font-medium text-[#111111] transition-colors duration-250 group-hover:text-[#941D27]">
                     {skill}
                   </span>
                 </motion.div>

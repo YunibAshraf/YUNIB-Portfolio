@@ -33,23 +33,23 @@ export const SelectedWork: React.FC = () => {
         <div className="w-[92%] max-w-[1440px] mx-auto">
           
           {/* 1. Section Header: PORTFOLIO / 2026 + SELECTED WORK + View All Projects */}
-          <div className="mb-12">
+          <div className="mb-8 sm:mb-12">
             {/* Label with horizontal line: 12px margin to heading */}
-            <div className="flex items-center gap-3 mb-3">
+            <div className="flex items-center gap-3 mb-2.5 sm:mb-3">
               <div className="h-[2px] w-6 bg-[#941D27]" />
               <span className="text-[10px] sm:text-[11px] font-bold tracking-[0.24em] uppercase text-[#111111]/80 font-heading">
                 PORTFOLIO / 2026
               </span>
             </div>
 
-            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase tracking-tight text-[#111111] font-heading leading-none">
+            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 sm:gap-4">
+              <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase tracking-tight text-[#111111] font-heading leading-tight sm:leading-none">
                 SELECTED WORK
               </h2>
 
               <a
                 href="#contact"
-                className="group inline-flex items-center text-xs sm:text-sm font-semibold text-[#111111] hover:text-[#941D27] transition-colors self-start sm:self-auto border-b border-[#941D27] pb-0.5 cursor-pointer"
+                className="group inline-flex items-center text-xs sm:text-sm font-semibold text-[#111111] hover:text-[#941D27] transition-colors self-start sm:self-auto border-b border-[#941D27] pb-0.5 cursor-pointer min-h-[36px]"
               >
                 <span>View All Projects</span>
                 <ArrowUpRight className="ml-1 w-3.5 h-3.5 transition-transform duration-250 group-hover:translate-x-1 group-hover:-translate-y-1" />
@@ -58,18 +58,21 @@ export const SelectedWork: React.FC = () => {
           </div>
 
           {/* 2. Short-Form Video Gallery (SHORT-FORM / INSTAGRAM REELS) */}
-          <div className="mb-12">
+          <div className="mb-10 sm:mb-12">
             {/* Subheading stretching across with thin grey divider extending to the right */}
-            <div className="flex items-center gap-3 mb-6 pb-3 border-b border-[#DAD9D4]/80 w-full">
+            <div className="flex items-center gap-3 mb-4 sm:mb-6 pb-2.5 sm:pb-3 border-b border-[#DAD9D4]/80 w-full">
               <div className="w-[3px] h-4 bg-[#941D27]" />
               <h3 className="text-xs sm:text-[13px] font-extrabold tracking-[0.2em] uppercase text-[#111111] font-heading shrink-0">
                 SHORT-FORM / INSTAGRAM REELS
               </h3>
             </div>
 
-            {/* 3-Column Desktop Grid: Col 1 (Reel 1: 9:16), Col 2 (Reel 2: 9:16), Col 3 (Reel 3 & Reel 4 stacked: 16:9 each) */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1fr_1fr_1.5fr] gap-4 sm:gap-5 w-full items-stretch">
-              {/* Column 1 — Reel 1 (Portrait 9:16, Full Column Height) */}
+            {/* Reels Grid:
+                - On mobile (<768px): exactly 2 columns grid (grid-cols-2)
+                - On desktop (lg: 1024px+): exactly 3-column layout (lg:grid-cols-[1fr_1fr_1.5fr])
+            */}
+            <div className="grid grid-cols-2 lg:grid-cols-[1fr_1fr_1.5fr] gap-3 sm:gap-4 md:gap-5 w-full items-stretch">
+              {/* Column 1 — Reel 1 (Portrait 9:16, Full Column Height on Desktop, Compact 9:16 on Mobile) */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -82,7 +85,7 @@ export const SelectedWork: React.FC = () => {
                     aspectRatio: "9:16",
                   })
                 }
-                className="group relative w-full aspect-[9/16] rounded-2xl overflow-hidden bg-black shadow-md transition-all duration-300 hover:shadow-2xl hover:-translate-y-1.5 border border-[#DAD9D4]/60 hover:border-[#941D27]/50 flex items-center justify-center cursor-pointer"
+                className="group relative w-full aspect-[9/16] max-h-[320px] xs:max-h-[360px] sm:max-h-[420px] md:max-h-none rounded-xl sm:rounded-2xl overflow-hidden bg-black shadow-md transition-all duration-300 hover:shadow-2xl hover:-translate-y-1.5 border border-[#DAD9D4]/60 hover:border-[#941D27]/50 flex items-center justify-center cursor-pointer min-w-0 mx-auto"
               >
                 {/* HTML5 Video element */}
                 <video
@@ -96,23 +99,23 @@ export const SelectedWork: React.FC = () => {
 
                 {/* Centered Play Icon */}
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-black/60 backdrop-blur-md border border-white/25 flex items-center justify-center text-white transition-all duration-300 group-hover:scale-115 group-hover:bg-[#941D27] group-hover:border-[#941D27] shadow-xl">
-                    <Play className="w-5 h-5 fill-current ml-0.5" />
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-black/60 backdrop-blur-md border border-white/25 flex items-center justify-center text-white transition-all duration-300 group-hover:scale-115 group-hover:bg-[#941D27] group-hover:border-[#941D27] shadow-xl">
+                    <Play className="w-4 h-4 sm:w-5 sm:h-5 fill-current ml-0.5" />
                   </div>
                 </div>
 
                 {/* Bottom Tag */}
-                <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between pointer-events-none z-10">
-                  <span className="text-[10px] font-bold font-mono tracking-widest text-white/80 uppercase">
+                <div className="absolute bottom-2.5 sm:bottom-3 left-2 sm:left-3 right-2 sm:right-3 flex items-center justify-between pointer-events-none z-10">
+                  <span className="text-[9px] sm:text-[10px] font-bold font-mono tracking-widest text-white/80 uppercase">
                     VIDEO 1
                   </span>
-                  <span className="text-[10px] font-bold tracking-wider uppercase text-white/90 bg-white/15 px-2.5 py-0.5 rounded-full backdrop-blur-xs">
-                    Play Video
+                  <span className="text-[9px] sm:text-[10px] font-bold tracking-wider uppercase text-white/90 bg-white/15 px-2 sm:px-2.5 py-0.5 rounded-full backdrop-blur-xs">
+                    Play
                   </span>
                 </div>
               </motion.div>
 
-              {/* Column 2 — Reel 2 (Portrait 9:16, Full Column Height) */}
+              {/* Column 2 — Reel 2 (Portrait 9:16, Full Column Height on Desktop, Compact 9:16 on Mobile) */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -125,7 +128,7 @@ export const SelectedWork: React.FC = () => {
                     aspectRatio: "9:16",
                   })
                 }
-                className="group relative w-full aspect-[9/16] rounded-2xl overflow-hidden bg-black shadow-md transition-all duration-300 hover:shadow-2xl hover:-translate-y-1.5 border border-[#DAD9D4]/60 hover:border-[#941D27]/50 flex items-center justify-center cursor-pointer"
+                className="group relative w-full aspect-[9/16] max-h-[320px] xs:max-h-[360px] sm:max-h-[420px] md:max-h-none rounded-xl sm:rounded-2xl overflow-hidden bg-black shadow-md transition-all duration-300 hover:shadow-2xl hover:-translate-y-1.5 border border-[#DAD9D4]/60 hover:border-[#941D27]/50 flex items-center justify-center cursor-pointer min-w-0 mx-auto"
               >
                 {/* HTML5 Video element */}
                 <video
@@ -139,24 +142,24 @@ export const SelectedWork: React.FC = () => {
 
                 {/* Centered Play Icon */}
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-black/60 backdrop-blur-md border border-white/25 flex items-center justify-center text-white transition-all duration-300 group-hover:scale-115 group-hover:bg-[#941D27] group-hover:border-[#941D27] shadow-xl">
-                    <Play className="w-5 h-5 fill-current ml-0.5" />
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-black/60 backdrop-blur-md border border-white/25 flex items-center justify-center text-white transition-all duration-300 group-hover:scale-115 group-hover:bg-[#941D27] group-hover:border-[#941D27] shadow-xl">
+                    <Play className="w-4 h-4 sm:w-5 sm:h-5 fill-current ml-0.5" />
                   </div>
                 </div>
 
                 {/* Bottom Tag */}
-                <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between pointer-events-none z-10">
-                  <span className="text-[10px] font-bold font-mono tracking-widest text-white/80 uppercase">
+                <div className="absolute bottom-2.5 sm:bottom-3 left-2 sm:left-3 right-2 sm:right-3 flex items-center justify-between pointer-events-none z-10">
+                  <span className="text-[9px] sm:text-[10px] font-bold font-mono tracking-widest text-white/80 uppercase">
                     VIDEO 2
                   </span>
-                  <span className="text-[10px] font-bold tracking-wider uppercase text-white/90 bg-white/15 px-2.5 py-0.5 rounded-full backdrop-blur-xs">
-                    Play Video
+                  <span className="text-[9px] sm:text-[10px] font-bold tracking-wider uppercase text-white/90 bg-white/15 px-2.5 py-0.5 rounded-full backdrop-blur-xs">
+                    Play
                   </span>
                 </div>
               </motion.div>
 
-              {/* Column 3 — Two Stacked Landscape Videos (Reel 3 on top, Reel 4 below) */}
-              <div className="md:col-span-2 lg:col-span-1 flex flex-col justify-between gap-4 sm:gap-5 w-full h-full">
+              {/* Column 3 / Row 2 on Mobile (col-span-2 on mobile with internal 2-column grid, lg:col-span-1 with flex-col on desktop) */}
+              <div className="col-span-2 lg:col-span-1 grid grid-cols-2 lg:flex lg:flex-col justify-between gap-3 sm:gap-4 md:gap-5 w-full h-full min-w-0">
                 {/* Top: Reel 3 (Landscape 16:9 Google Drive Video) */}
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
@@ -170,7 +173,7 @@ export const SelectedWork: React.FC = () => {
                       aspectRatio: "16:9",
                     })
                   }
-                  className="group relative w-full aspect-video rounded-2xl overflow-hidden bg-black shadow-md transition-all duration-300 hover:shadow-2xl hover:-translate-y-1.5 border border-[#DAD9D4]/60 hover:border-[#941D27]/50 flex items-center justify-center flex-1 cursor-pointer"
+                  className="group relative w-full aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-black shadow-md transition-all duration-300 hover:shadow-2xl hover:-translate-y-1.5 border border-[#DAD9D4]/60 hover:border-[#941D27]/50 flex items-center justify-center flex-1 cursor-pointer min-w-0"
                 >
                   {/* Google Drive Preview Iframe (16:9 landscape) */}
                   <iframe
@@ -185,17 +188,17 @@ export const SelectedWork: React.FC = () => {
 
                   {/* Centered Play Icon */}
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                    <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/60 backdrop-blur-md border border-white/25 flex items-center justify-center text-white transition-all duration-300 group-hover:scale-115 group-hover:bg-[#941D27] group-hover:border-[#941D27] shadow-xl">
+                    <div className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full bg-black/60 backdrop-blur-md border border-white/25 flex items-center justify-center text-white transition-all duration-300 group-hover:scale-115 group-hover:bg-[#941D27] group-hover:border-[#941D27] shadow-xl">
                       <Play className="w-4 h-4 fill-current ml-0.5" />
                     </div>
                   </div>
 
-                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between pointer-events-none z-10">
-                    <span className="text-[10px] font-bold font-mono tracking-widest text-white/80 uppercase">
+                  <div className="absolute bottom-2.5 sm:bottom-3 left-2 sm:left-3 right-2 sm:right-3 flex items-center justify-between pointer-events-none z-10">
+                    <span className="text-[9px] sm:text-[10px] font-bold font-mono tracking-widest text-white/80 uppercase">
                       VIDEO 3
                     </span>
-                    <span className="text-[10px] font-bold tracking-wider uppercase text-white/90 bg-white/15 px-2.5 py-0.5 rounded-full backdrop-blur-xs">
-                      Play Video
+                    <span className="text-[9px] sm:text-[10px] font-bold tracking-wider uppercase text-white/90 bg-white/15 px-2 sm:px-2.5 py-0.5 rounded-full backdrop-blur-xs">
+                      Play
                     </span>
                   </div>
                 </motion.div>
@@ -213,7 +216,7 @@ export const SelectedWork: React.FC = () => {
                       aspectRatio: "16:9",
                     })
                   }
-                  className="group relative w-full aspect-video rounded-2xl overflow-hidden bg-black shadow-md transition-all duration-300 hover:shadow-2xl hover:-translate-y-1.5 border border-[#DAD9D4]/60 hover:border-[#941D27]/50 flex items-center justify-center flex-1 cursor-pointer"
+                  className="group relative w-full aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-black shadow-md transition-all duration-300 hover:shadow-2xl hover:-translate-y-1.5 border border-[#DAD9D4]/60 hover:border-[#941D27]/50 flex items-center justify-center flex-1 cursor-pointer min-w-0"
                 >
                   {/* Cinematic Image Thumbnail (object-fit: cover) */}
                   <Image
@@ -226,17 +229,17 @@ export const SelectedWork: React.FC = () => {
 
                   {/* Centered Play Icon */}
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                    <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/60 backdrop-blur-md border border-white/25 flex items-center justify-center text-white transition-all duration-300 group-hover:scale-115 group-hover:bg-[#941D27] group-hover:border-[#941D27] shadow-xl">
+                    <div className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full bg-black/60 backdrop-blur-md border border-white/25 flex items-center justify-center text-white transition-all duration-300 group-hover:scale-115 group-hover:bg-[#941D27] group-hover:border-[#941D27] shadow-xl">
                       <Play className="w-4 h-4 fill-current ml-0.5" />
                     </div>
                   </div>
 
-                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between pointer-events-none z-10">
-                    <span className="text-[10px] font-bold font-mono tracking-widest text-white/80 uppercase">
+                  <div className="absolute bottom-2.5 sm:bottom-3 left-2 sm:left-3 right-2 sm:right-3 flex items-center justify-between pointer-events-none z-10">
+                    <span className="text-[9px] sm:text-[10px] font-bold font-mono tracking-widest text-white/80 uppercase">
                       VIDEO 4
                     </span>
-                    <span className="text-[10px] font-bold tracking-wider uppercase text-white/90 bg-white/15 px-2.5 py-0.5 rounded-full backdrop-blur-xs">
-                      Play Video
+                    <span className="text-[9px] sm:text-[10px] font-bold tracking-wider uppercase text-white/90 bg-white/15 px-2 sm:px-2.5 py-0.5 rounded-full backdrop-blur-xs">
+                      Play
                     </span>
                   </div>
                 </motion.div>
@@ -247,14 +250,18 @@ export const SelectedWork: React.FC = () => {
           {/* 3. YouTube Gallery (LONG-FORM / YOUTUBE FILMS) */}
           <div>
             {/* Subheading stretching across with thin grey divider extending to the right */}
-            <div className="flex items-center gap-3 mb-6 pb-3 border-b border-[#DAD9D4]/80 w-full">
+            <div className="flex items-center gap-3 mb-4 sm:mb-6 pb-2.5 sm:pb-3 border-b border-[#DAD9D4]/80 w-full">
               <div className="w-[3px] h-4 bg-[#941D27]" />
               <h3 className="text-xs sm:text-[13px] font-extrabold tracking-[0.2em] uppercase text-[#111111] font-heading shrink-0">
-                YOUTUBE VIDEOS              </h3>
+                YOUTUBE VIDEOS
+              </h3>
             </div>
 
-            {/* 4 Responsive YouTube Video Cards in a 2-column x 2-row grid on desktop/tablet, 1-col on mobile */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 w-full">
+            {/* 4 Responsive YouTube Video Cards:
+                - On mobile (<768px): exactly 2 columns grid (grid-cols-2)
+                - On tablet/desktop (sm: 640px+ / md: 768px+): 2-column grid
+            */}
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 md:gap-5 w-full">
               {YOUTUBE_PROJECTS.map((yt, idx) => (
                 <motion.div
                   key={yt.id}
@@ -273,7 +280,7 @@ export const SelectedWork: React.FC = () => {
                       aspectRatio: "16:9",
                     })
                   }
-                  className="group relative w-full aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-[#0A0A0A] shadow-md transition-all duration-300 hover:shadow-2xl hover:-translate-y-1.5 border border-[#DAD9D4]/70 hover:border-[#941D27]/50 flex flex-col cursor-pointer"
+                  className="group relative w-full aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-[#0A0A0A] shadow-md transition-all duration-300 hover:shadow-2xl hover:-translate-y-1.5 border border-[#DAD9D4]/70 hover:border-[#941D27]/50 flex flex-col cursor-pointer min-w-0"
                 >
                   {/* YouTube high-resolution Thumbnail with object-fit: cover */}
                   <div
@@ -286,18 +293,18 @@ export const SelectedWork: React.FC = () => {
 
                   {/* Centered Play Indicator with YouTube badge hover transition */}
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-black/60 backdrop-blur-md border border-white/25 flex items-center justify-center text-white transition-all duration-300 group-hover:scale-115 group-hover:bg-[#FF0000] group-hover:border-[#FF0000] shadow-xl">
-                      <Play className="w-5 h-5 fill-current ml-0.5" />
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-black/60 backdrop-blur-md border border-white/25 flex items-center justify-center text-white transition-all duration-300 group-hover:scale-115 group-hover:bg-[#FF0000] group-hover:border-[#FF0000] shadow-xl">
+                      <Play className="w-4 h-4 sm:w-5 sm:h-5 fill-current ml-0.5" />
                     </div>
                   </div>
 
                   {/* Bottom Bar with Video Title and Tag */}
-                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between pointer-events-none z-10">
-                    <span className="text-[10px] font-bold font-mono tracking-widest text-white/80 uppercase">
+                  <div className="absolute bottom-2.5 sm:bottom-3 left-2 sm:left-3 right-2 sm:right-3 flex items-center justify-between pointer-events-none z-10">
+                    <span className="text-[9px] sm:text-[10px] font-bold font-mono tracking-widest text-white/80 uppercase">
                       VIDEO {idx + 1}
                     </span>
-                    <span className="inline-flex items-center gap-1 text-[10px] font-bold tracking-wider uppercase text-white/90 bg-white/15 px-2.5 py-0.5 rounded-full backdrop-blur-xs">
-                      <span className="w-2 h-2 rounded-full bg-[#FF0000]" />
+                    <span className="inline-flex items-center gap-1 text-[9px] sm:text-[10px] font-bold tracking-wider uppercase text-white/90 bg-white/15 px-2 sm:px-2.5 py-0.5 rounded-full backdrop-blur-xs">
+                      <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#FF0000]" />
                       Watch
                     </span>
                   </div>

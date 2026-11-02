@@ -17,8 +17,8 @@ export const ContactCTA: React.FC = () => {
   return (
     <section id="contact" className="w-full relative overflow-hidden my-6 sm:my-10 scroll-mt-28">
       {/* Full-width container with border radius on desktop */}
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12">
-        <div className="group relative rounded-3xl overflow-hidden min-h-[380px] sm:min-h-[440px] md:min-h-[480px] flex items-center justify-center p-6 sm:p-12 md:p-16 shadow-2xl">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12">
+        <div className="group relative rounded-2xl sm:rounded-3xl overflow-hidden min-h-[360px] sm:min-h-[440px] md:min-h-[480px] flex items-center justify-center p-5 sm:p-12 md:p-16 shadow-2xl">
           
           {/* Mountain Silhouette Sunset Background with slow cinematic zoom */}
           <div
@@ -55,7 +55,7 @@ export const ContactCTA: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.15 }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white font-heading leading-tight mb-8 drop-shadow-md"
+              className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white font-heading leading-tight mb-6 sm:mb-8 drop-shadow-md break-words"
             >
               {CONTACT_DATA.headline}
             </motion.h2>
@@ -66,11 +66,11 @@ export const ContactCTA: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.3 }}
-              className="flex flex-col sm:flex-row items-center gap-4"
+              className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto"
             >
               <a
                 href={`mailto:${CONTACT_DATA.email}?subject=Project%20Inquiry%20-%20Video%20Editing`}
-                className="group/btn relative inline-flex items-center justify-center bg-white text-[#111111] hover:bg-white text-xs sm:text-sm font-bold px-7 sm:px-8 py-3.5 rounded-full transition-all duration-300 active:scale-95 shadow-xl hover:shadow-2xl overflow-hidden cursor-pointer"
+                className="group/btn relative inline-flex items-center justify-center bg-white text-[#111111] hover:bg-white text-xs sm:text-sm font-bold px-7 sm:px-8 py-3.5 min-h-[44px] rounded-full transition-all duration-300 active:scale-95 shadow-xl hover:shadow-2xl overflow-hidden cursor-pointer"
               >
                 {/* Light sweep animation on button */}
                 <div className="absolute inset-0 -translate-x-full group-hover/btn:translate-x-full duration-700 bg-gradient-to-r from-transparent via-white/50 to-transparent transition-transform ease-in-out pointer-events-none" />
@@ -82,15 +82,15 @@ export const ContactCTA: React.FC = () => {
 
               <button
                 onClick={handleCopyEmail}
-                className="inline-flex items-center justify-center bg-black/40 hover:bg-black/70 backdrop-blur-md text-white border border-white/20 hover:border-white/40 text-xs sm:text-sm font-medium px-5 sm:px-6 py-3.5 rounded-full transition-all duration-300 active:scale-95 cursor-pointer"
+                className="inline-flex items-center justify-center bg-black/40 hover:bg-black/70 backdrop-blur-md text-white border border-white/20 hover:border-white/40 text-xs sm:text-sm font-medium px-4 sm:px-6 py-3.5 min-h-[44px] rounded-full transition-all duration-300 active:scale-95 cursor-pointer max-w-full break-all"
               >
                 {isCopied ? (
                   <>
-                    <CheckCircle2 className="w-4 h-4 mr-2 text-green-400" />
+                    <CheckCircle2 className="w-4 h-4 mr-2 text-green-400 shrink-0" />
                     <span>Copied Email!</span>
                   </>
                 ) : (
-                  <span>Copy: {CONTACT_DATA.email}</span>
+                  <span className="truncate">Copy: {CONTACT_DATA.email}</span>
                 )}
               </button>
             </motion.div>
