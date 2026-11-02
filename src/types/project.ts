@@ -8,6 +8,7 @@ export interface ReelProject {
   duration?: string;
   thumbnailUrl?: string;
   driveUrl?: string;
+  youtubeId?: string;
 }
 
 export interface YouTubeProject {

@@ -14,7 +14,7 @@ export const HERO_STATS: Stat[] = [
   { value: "100%", label: "Client Focused" },
 ];
 
-// Short-form / Reel Videos (4 local MP4 video files)
+// Short-form / Reel Videos (6 videos: 4 portrait 9:16 + 2 landscape 16:9)
 export const REELS_PROJECTS: ReelProject[] = [
   {
     id: "reel-1",
@@ -40,6 +40,28 @@ export const REELS_PROJECTS: ReelProject[] = [
     id: "reel-3",
     slug: "short-form-video-3",
     title: "Short-Form Video 3",
+    videoSrc: "https://www.youtube-nocookie.com/embed/F2cjpTnLQbA",
+    youtubeId: "F2cjpTnLQbA",
+    aspectRatio: "9:16",
+    category: "YouTube Shorts",
+    duration: "9:16",
+    thumbnailUrl: "https://img.youtube.com/vi/F2cjpTnLQbA/hqdefault.jpg",
+  },
+  {
+    id: "reel-4",
+    slug: "short-form-video-4",
+    title: "Short-Form Video 4",
+    videoSrc: "https://www.youtube-nocookie.com/embed/Ya-Kcx0h9Ao",
+    youtubeId: "Ya-Kcx0h9Ao",
+    aspectRatio: "9:16",
+    category: "YouTube Shorts",
+    duration: "9:16",
+    thumbnailUrl: "https://img.youtube.com/vi/Ya-Kcx0h9Ao/hqdefault.jpg",
+  },
+  {
+    id: "reel-5",
+    slug: "short-form-video-5",
+    title: "Short-Form Video 5",
     videoSrc: "https://drive.google.com/file/d/1dUC3zh6HX2EuiBFJQDQuK6Zv9irJ0rjq/preview",
     driveUrl: "https://drive.google.com/file/d/1dUC3zh6HX2EuiBFJQDQuK6Zv9irJ0rjq/view?usp=drivesdk",
     aspectRatio: "16:9",
@@ -47,9 +69,9 @@ export const REELS_PROJECTS: ReelProject[] = [
     duration: "16:9",
   },
   {
-    id: "reel-4",
-    slug: "short-form-video-4",
-    title: "Short-Form Video 4",
+    id: "reel-6",
+    slug: "short-form-video-6",
+    title: "Short-Form Video 6",
     videoSrc: "https://drive.google.com/file/d/1OEtBixubZys4wb5-_kBJ8RQjvS3gKWYg/preview",
     driveUrl: "https://drive.google.com/file/d/1OEtBixubZys4wb5-_kBJ8RQjvS3gKWYg/view?usp=drivesdk",
     aspectRatio: "16:9",

@@ -91,6 +91,10 @@ export const VideoModal: React.FC<VideoModalProps> = ({
       embedSrc = activeSource.endsWith("/embed/")
         ? activeSource
         : `${activeSource.replace(/\/$/, "")}/embed/`;
+    } else if (activeSource.includes("youtube.com") || activeSource.includes("youtube-nocookie.com")) {
+      embedSrc = activeSource.includes("autoplay=1")
+        ? activeSource
+        : `${activeSource}${activeSource.includes("?") ? "&" : "?"}autoplay=1&rel=0&modestbranding=1`;
     } else if (activeSource.startsWith("http")) {
       embedSrc = activeSource;
     } else if (activeSource) {

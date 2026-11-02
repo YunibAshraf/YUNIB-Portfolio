@@ -81,10 +81,14 @@ export const SelectedWork: React.FC = () => {
 
             {/* Reels Grid:
                 - On mobile (<768px): exactly 2 columns grid (grid-cols-2)
-                - On desktop (lg: 1024px+): exactly 3-column layout (lg:grid-cols-[1fr_1fr_1.5fr])
+                  Row 1: Reel 1 & Reel 2 (9:16 portrait)
+                  Row 2: Reel 3 & Reel 4 (9:16 portrait YouTube Shorts)
+                  Row 3: Reel 5 & Reel 6 (16:9 landscape)
+                - On desktop (lg: 1024px+): 5-column layout (lg:grid-cols-[1fr_1fr_1fr_1fr_1.4fr])
+                  4 portrait columns + 1 stacked landscape column
             */}
-            <div className="grid grid-cols-2 lg:grid-cols-[1fr_1fr_1.5fr] gap-3 sm:gap-4 md:gap-5 w-full items-stretch">
-              {/* Column 1 — Reel 1 (Portrait 9:16, Full Column Height on Desktop, Compact 9:16 on Mobile) */}
+            <div className="grid grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_1fr_1.4fr] gap-3 sm:gap-4 md:gap-5 w-full items-stretch">
+              {/* Column 1 — Reel 1 (Portrait 9:16) */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -93,11 +97,11 @@ export const SelectedWork: React.FC = () => {
                 onClick={() =>
                   setActiveModal({
                     urlOrId: REELS_PROJECTS[0]?.videoSrc || "/videos/reel-1.mp4",
-                    title: "Short-Form Video 1",
+                    title: REELS_PROJECTS[0]?.title || "Short-Form Video 1",
                     aspectRatio: "9:16",
                   })
                 }
-                className="group relative w-full aspect-[9/16] max-h-[320px] xs:max-h-[360px] sm:max-h-[420px] md:max-h-none rounded-xl sm:rounded-2xl overflow-hidden bg-black shadow-md transition-all duration-300 hover:shadow-2xl hover:-translate-y-1.5 border border-[#DAD9D4]/60 hover:border-[#941D27]/50 flex items-center justify-center cursor-pointer min-w-0 mx-auto"
+                className="group relative w-full aspect-[9/16] max-h-[320px] xs:max-h-[360px] sm:max-h-[420px] lg:max-h-none rounded-xl sm:rounded-2xl overflow-hidden bg-black shadow-md transition-all duration-300 hover:shadow-2xl hover:-translate-y-1.5 border border-[#DAD9D4]/60 hover:border-[#941D27]/50 flex items-center justify-center cursor-pointer min-w-0 mx-auto"
               >
                 {/* HTML5 Video element */}
                 <video
@@ -127,20 +131,20 @@ export const SelectedWork: React.FC = () => {
                 </div>
               </motion.div>
 
-              {/* Column 2 — Reel 2 (Portrait 9:16, Full Column Height on Desktop, Compact 9:16 on Mobile) */}
+              {/* Column 2 — Reel 2 (Portrait 9:16) */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.65, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.65, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
                 onClick={() =>
                   setActiveModal({
                     urlOrId: REELS_PROJECTS[1]?.videoSrc || "/videos/reel-2.mp4",
-                    title: "Short-Form Video 2",
+                    title: REELS_PROJECTS[1]?.title || "Short-Form Video 2",
                     aspectRatio: "9:16",
                   })
                 }
-                className="group relative w-full aspect-[9/16] max-h-[320px] xs:max-h-[360px] sm:max-h-[420px] md:max-h-none rounded-xl sm:rounded-2xl overflow-hidden bg-black shadow-md transition-all duration-300 hover:shadow-2xl hover:-translate-y-1.5 border border-[#DAD9D4]/60 hover:border-[#941D27]/50 flex items-center justify-center cursor-pointer min-w-0 mx-auto"
+                className="group relative w-full aspect-[9/16] max-h-[320px] xs:max-h-[360px] sm:max-h-[420px] lg:max-h-none rounded-xl sm:rounded-2xl overflow-hidden bg-black shadow-md transition-all duration-300 hover:shadow-2xl hover:-translate-y-1.5 border border-[#DAD9D4]/60 hover:border-[#941D27]/50 flex items-center justify-center cursor-pointer min-w-0 mx-auto"
               >
                 {/* HTML5 Video element */}
                 <video
@@ -170,18 +174,104 @@ export const SelectedWork: React.FC = () => {
                 </div>
               </motion.div>
 
-              {/* Column 3 / Row 2 on Mobile (col-span-2 on mobile with internal 2-column grid, lg:col-span-1 with flex-col on desktop) */}
+              {/* Column 3 — Reel 3 (New YouTube Short - Portrait 9:16) */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.65, delay: 0.16, ease: [0.22, 1, 0.36, 1] }}
+                onClick={() =>
+                  setActiveModal({
+                    urlOrId: REELS_PROJECTS[2]?.videoSrc || "https://www.youtube-nocookie.com/embed/F2cjpTnLQbA",
+                    title: REELS_PROJECTS[2]?.title || "Short-Form Video 3",
+                    aspectRatio: "9:16",
+                  })
+                }
+                className="group relative w-full aspect-[9/16] max-h-[320px] xs:max-h-[360px] sm:max-h-[420px] lg:max-h-none rounded-xl sm:rounded-2xl overflow-hidden bg-black shadow-md transition-all duration-300 hover:shadow-2xl hover:-translate-y-1.5 border border-[#DAD9D4]/60 hover:border-[#941D27]/50 flex items-center justify-center cursor-pointer min-w-0 mx-auto"
+              >
+                {/* YouTube Thumbnail */}
+                <Image
+                  src={REELS_PROJECTS[2]?.thumbnailUrl || "https://img.youtube.com/vi/F2cjpTnLQbA/hqdefault.jpg"}
+                  alt={REELS_PROJECTS[2]?.title || "Short-Form Video 3"}
+                  fill
+                  sizes="(max-width: 768px) 50vw, 20vw"
+                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/35 transition-colors duration-300" />
+
+                {/* Centered Play Icon */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-black/60 backdrop-blur-md border border-white/25 flex items-center justify-center text-white transition-all duration-300 group-hover:scale-115 group-hover:bg-[#941D27] group-hover:border-[#941D27] shadow-xl">
+                    <Play className="w-4 h-4 sm:w-5 sm:h-5 fill-current ml-0.5" />
+                  </div>
+                </div>
+
+                {/* Bottom Tag */}
+                <div className="absolute bottom-2.5 sm:bottom-3 left-2 sm:left-3 right-2 sm:right-3 flex items-center justify-between pointer-events-none z-10">
+                  <span className="text-[9px] sm:text-[10px] font-bold font-mono tracking-widest text-white/80 uppercase">
+                    VIDEO 3
+                  </span>
+                  <span className="text-[9px] sm:text-[10px] font-bold tracking-wider uppercase text-white/90 bg-white/15 px-2.5 py-0.5 rounded-full backdrop-blur-xs">
+                    Play
+                  </span>
+                </div>
+              </motion.div>
+
+              {/* Column 4 — Reel 4 (New YouTube Short - Portrait 9:16) */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.65, delay: 0.24, ease: [0.22, 1, 0.36, 1] }}
+                onClick={() =>
+                  setActiveModal({
+                    urlOrId: REELS_PROJECTS[3]?.videoSrc || "https://www.youtube-nocookie.com/embed/Ya-Kcx0h9Ao",
+                    title: REELS_PROJECTS[3]?.title || "Short-Form Video 4",
+                    aspectRatio: "9:16",
+                  })
+                }
+                className="group relative w-full aspect-[9/16] max-h-[320px] xs:max-h-[360px] sm:max-h-[420px] lg:max-h-none rounded-xl sm:rounded-2xl overflow-hidden bg-black shadow-md transition-all duration-300 hover:shadow-2xl hover:-translate-y-1.5 border border-[#DAD9D4]/60 hover:border-[#941D27]/50 flex items-center justify-center cursor-pointer min-w-0 mx-auto"
+              >
+                {/* YouTube Thumbnail */}
+                <Image
+                  src={REELS_PROJECTS[3]?.thumbnailUrl || "https://img.youtube.com/vi/Ya-Kcx0h9Ao/hqdefault.jpg"}
+                  alt={REELS_PROJECTS[3]?.title || "Short-Form Video 4"}
+                  fill
+                  sizes="(max-width: 768px) 50vw, 20vw"
+                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/35 transition-colors duration-300" />
+
+                {/* Centered Play Icon */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-black/60 backdrop-blur-md border border-white/25 flex items-center justify-center text-white transition-all duration-300 group-hover:scale-115 group-hover:bg-[#941D27] group-hover:border-[#941D27] shadow-xl">
+                    <Play className="w-4 h-4 sm:w-5 sm:h-5 fill-current ml-0.5" />
+                  </div>
+                </div>
+
+                {/* Bottom Tag */}
+                <div className="absolute bottom-2.5 sm:bottom-3 left-2 sm:left-3 right-2 sm:right-3 flex items-center justify-between pointer-events-none z-10">
+                  <span className="text-[9px] sm:text-[10px] font-bold font-mono tracking-widest text-white/80 uppercase">
+                    VIDEO 4
+                  </span>
+                  <span className="text-[9px] sm:text-[10px] font-bold tracking-wider uppercase text-white/90 bg-white/15 px-2.5 py-0.5 rounded-full backdrop-blur-xs">
+                    Play
+                  </span>
+                </div>
+              </motion.div>
+
+              {/* Column 5 on Desktop (1.4fr) / Row 3 on Mobile (col-span-2 on mobile with internal 2-column grid, lg:col-span-1 with flex-col on desktop) */}
               <div className="col-span-2 lg:col-span-1 grid grid-cols-2 lg:flex lg:flex-col justify-between gap-3 sm:gap-4 md:gap-5 w-full h-full min-w-0">
-                {/* Top: Reel 3 (Landscape 16:9 Google Drive Video) */}
+                {/* Reel 5 (Landscape 16:9 Google Drive Video) */}
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.65, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{ duration: 0.65, delay: 0.32, ease: [0.22, 1, 0.36, 1] }}
                   onClick={() =>
                     setActiveModal({
-                      urlOrId: REELS_PROJECTS[2]?.videoSrc || "https://drive.google.com/file/d/1dUC3zh6HX2EuiBFJQDQuK6Zv9irJ0rjq/preview",
-                      title: "Short-Form Video 3",
+                      urlOrId: REELS_PROJECTS[4]?.videoSrc || "https://drive.google.com/file/d/1dUC3zh6HX2EuiBFJQDQuK6Zv9irJ0rjq/preview",
+                      title: REELS_PROJECTS[4]?.title || "Short-Form Video 5",
                       aspectRatio: "16:9",
                     })
                   }
@@ -190,7 +280,7 @@ export const SelectedWork: React.FC = () => {
                   {/* Google Drive Preview Iframe (16:9 landscape) */}
                   <iframe
                     src="https://drive.google.com/file/d/1dUC3zh6HX2EuiBFJQDQuK6Zv9irJ0rjq/preview"
-                    title="Short-Form Video 3"
+                    title="Short-Form Video 5"
                     loading="lazy"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
@@ -207,7 +297,7 @@ export const SelectedWork: React.FC = () => {
 
                   <div className="absolute bottom-2.5 sm:bottom-3 left-2 sm:left-3 right-2 sm:right-3 flex items-center justify-between pointer-events-none z-10">
                     <span className="text-[9px] sm:text-[10px] font-bold font-mono tracking-widest text-white/80 uppercase">
-                      VIDEO 3
+                      VIDEO 5
                     </span>
                     <span className="text-[9px] sm:text-[10px] font-bold tracking-wider uppercase text-white/90 bg-white/15 px-2 sm:px-2.5 py-0.5 rounded-full backdrop-blur-xs">
                       Play
@@ -215,16 +305,16 @@ export const SelectedWork: React.FC = () => {
                   </div>
                 </motion.div>
 
-                {/* Bottom: Reel 4 (Landscape 16:9 Google Drive Video with Custom Cinematic Thumbnail) */}
+                {/* Reel 6 (Landscape 16:9 Google Drive Video with Custom Cinematic Thumbnail) */}
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.65, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{ duration: 0.65, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
                   onClick={() =>
                     setActiveModal({
-                      urlOrId: REELS_PROJECTS[3]?.videoSrc || "https://drive.google.com/file/d/1OEtBixubZys4wb5-_kBJ8RQjvS3gKWYg/preview",
-                      title: "Short-Form Video 4",
+                      urlOrId: REELS_PROJECTS[5]?.videoSrc || "https://drive.google.com/file/d/1OEtBixubZys4wb5-_kBJ8RQjvS3gKWYg/preview",
+                      title: REELS_PROJECTS[5]?.title || "Short-Form Video 6",
                       aspectRatio: "16:9",
                     })
                   }
@@ -232,8 +322,8 @@ export const SelectedWork: React.FC = () => {
                 >
                   {/* Cinematic Image Thumbnail (object-fit: cover) */}
                   <Image
-                    src="/videos/reel-4-thumb.jpg"
-                    alt="Short-Form Video 4 Thumbnail"
+                    src={REELS_PROJECTS[5]?.thumbnailUrl || "/videos/reel-4-thumb.jpg"}
+                    alt={REELS_PROJECTS[5]?.title || "Short-Form Video 6 Thumbnail"}
                     fill
                     className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                   />
@@ -248,7 +338,7 @@ export const SelectedWork: React.FC = () => {
 
                   <div className="absolute bottom-2.5 sm:bottom-3 left-2 sm:left-3 right-2 sm:right-3 flex items-center justify-between pointer-events-none z-10">
                     <span className="text-[9px] sm:text-[10px] font-bold font-mono tracking-widest text-white/80 uppercase">
-                      VIDEO 4
+                      VIDEO 6
                     </span>
                     <span className="text-[9px] sm:text-[10px] font-bold tracking-wider uppercase text-white/90 bg-white/15 px-2 sm:px-2.5 py-0.5 rounded-full backdrop-blur-xs">
                       Play
