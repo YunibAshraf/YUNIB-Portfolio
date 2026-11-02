@@ -206,7 +206,6 @@ export const ABOUT_DATA = {
   skills: [
     "Storytelling & Pacing",
     "Cut & Flow",
-    "Sound Design",
     "Color Grading",
     "Voice Over"
   ],
